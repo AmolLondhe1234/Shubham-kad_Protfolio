@@ -19,8 +19,8 @@ from Portfolio_app import views
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('',views.home,name='home'),
-    path('aboutme',views.aboutme,name='aboutme'),
-    path('project',views.project,name='project'),
-    path('certificate',views.certificate,name='certificate'),
-    path('feedback',views.feedback,name='feedback')
+    # path('aboutme',views.aboutme,name='aboutme'),
+    # path('project',views.project,name='project'),
+    # path('certificate',views.certificate,name='certificate'),
+    # path('feedback',views.feedback,name='feedback')
 ]
