@@ -148,19 +148,19 @@
             <h6 class="section-title mb-6">Projects</h6>
             <!-- row -->
             <div class="row">
+                {% for prjt in prjt %}
                 <div class="col-md-4">
                     <a href="#" class="portfolio-card">
-                        {% for prjt in prjt %}
-                        <img src="static/imgs/folio-1.jpg" class="portfolio-card-img" alt="Download free bootstrap 4 landing page, free boootstrap 4 templates, Download free bootstrap 4.1 landing page, free boootstrap 4.1.1 templates, meyawo Landing page">    
+                        <img src="{{prjt.P_image}}" class="portfolio-card-img" alt="Download free bootstrap 4 landing page, free boootstrap 4 templates, Download free bootstrap 4.1 landing page, free boootstrap 4.1.1 templates, meyawo Landing page">    
                         <span class="portfolio-card-overlay">
                             <span class="portfolio-card-caption">
                                 <h4>{{prjt.P_name }}</h5>
                                 <p class="font-weight-normal">{{prjt.P_descriptions}}</p>
                             </span>                         
-                        </span>  
-                        {% endfor %}                   
+                        </span>                    
                     </a>
                 </div>
+                {% endfor %}
             </div><!-- end of row -->
         </div><!-- end of container -->
     </section> <!-- end of portfolio section -->
@@ -218,10 +218,10 @@
             <p class="section-subtitle">WelCome To My Certification World</p>
             <h6 class="section-title mb-6">My Certificates</h6>
             <!-- blog-wrapper -->
+            {% for cert in cert %}
             <div class="blog-card">
-                {% for cert in cert %}
                 <div class="blog-card-header">
-                    <img src="static/imgs/img-1.jpg" class="blog-card-img" alt="Download free bootstrap 4 landing page, free boootstrap 4 templates, Download free bootstrap 4.1 landing page, free boootstrap 4.1.1 templates, meyawo Landing page">
+                    <img src="{{cert.C_image}}" class="blog-card-img" alt="Download free bootstrap 4 landing page, free boootstrap 4 templates, Download free bootstrap 4.1 landing page, free boootstrap 4.1.1 templates, meyawo Landing page">
                 </div>
                 <div class="blog-card-body">
                     <h5 class="blog-card-title">{{cert.C_name}}</h6>
@@ -239,9 +239,9 @@
                     <!-- <a href="#" class="blog-card-link">Read more <i class="ti-angle-double-right"></i></a> -->
                     
                 </div>
-                {% endfor %}
+               
             </div><!-- end of blog wrapper -->
-
+            {% endfor %}
         </div><!-- end of container -->
     </section><!-- end of blog section -->
 
