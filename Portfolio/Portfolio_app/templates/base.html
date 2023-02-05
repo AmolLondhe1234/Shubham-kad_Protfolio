@@ -30,7 +30,7 @@
                     <a class="link" href="#blog">Certificates</a>
                 </li>
                 <li class="item">
-                    <a class="link" href="#testmonial">Feedback/Comments</a>
+                    <a class="link" href="/#testmonial">Feedback/Comments</a>
                 </li>
                 <li class="item">
                     <a class="link" href="#contact">Contact</a>
@@ -149,39 +149,15 @@
             <div class="row">
                 <div class="col-md-4">
                     <a href="#" class="portfolio-card">
+                        {% for prjt in prjt %}
                         <img src="static/imgs/folio-1.jpg" class="portfolio-card-img" alt="Download free bootstrap 4 landing page, free boootstrap 4 templates, Download free bootstrap 4.1 landing page, free boootstrap 4.1.1 templates, meyawo Landing page">    
                         <span class="portfolio-card-overlay">
                             <span class="portfolio-card-caption">
-                                <h4>Loan Prediction</h5>
-                                <p class="font-weight-normal">Main objective of this project is to predict
-                                    whether assigning the loan particular person will be safe or
-                                    not.</p>
+                                <h4>{{prjt.P_name }}</h5>
+                                <p class="font-weight-normal">{{prjt.P_descriptions}}</p>
                             </span>                         
-                        </span>                     
-                    </a>
-                </div>
-                <div class="col-md-4">
-                    <a href="#" class="portfolio-card">
-                        <img class="portfolio-card-img" src="static/imgs/folio-2.jpg" class="img-responsive rounded" alt="Download free bootstrap 4 landing page, free boootstrap 4 templates, Download free bootstrap 4.1 landing page, free boootstrap 4.1.1 templates, meyawo Landing page">
-                        <span class="portfolio-card-overlay">
-                            <span class="portfolio-card-caption">
-                                <h4>Iris Dataset.</h5>
-                                <p class="font-weight-normal">Classify Iris Plant into Three Species Using
-                                    (Setosa , Virginica & Versicolour</p>
-                            </span>                         
-                        </span>                         
-                    </a>
-                </div>
-                <div class="col-md-4">
-                    <a href="#" class="portfolio-card">
-                        <img class="portfolio-card-img" src="static/imgs/folio-3.jpg" class="img-responsive rounded" alt="Download free bootstrap 4 landing page, free boootstrap 4 templates, Download free bootstrap 4.1 landing page, free boootstrap 4.1.1 templates, meyawo Landing page">    
-                        <span class="portfolio-card-overlay">
-                            <span class="portfolio-card-caption">
-                                <h4>Stock Market Prediction</h5>
-                                <p class="font-weight-normal"> Understand the basic of how the stock market
-                                    works and what goes into deciding when to buy or sell.</p>
-                            </span>                         
-                        </span>                     
+                        </span>  
+                        {% endfor %}                   
                     </a>
                 </div>
             </div><!-- end of row -->
@@ -214,19 +190,23 @@
             <h6 class="section-title mb-6">FEEDBACKS</h6>
 
             <!-- row -->
+            {% for fb in fb %}
             <div class="row">
                 <div class="col-md-6">
                     <div class="testimonial-card">
-                        <div class="testimonial-card-img-holder">
+                        {% comment %} <div class="testimonial-card-img-holder">
                             <img src="static/imgs/avatar2.jpg" class="testimonial-card-img" alt="Download free bootstrap 4 landing page, free boootstrap 4 templates, Download free bootstrap 4.1 landing page, free boootstrap 4.1.1 templates, meyawo Landing page">                           
-                        </div>
+                        </div> {% endcomment %}
+                        
                         <div class="testimonial-card-body">
-                            <p class="testimonial-card-subtitle">{{fb.f_des}}</p>
-                            <h6 class="testimonial-card-title">{{fb.fname}}</h6>
+                            <p class="testimonial-card-subtitle">{{fb.F_text}}</p>
+                            <h6 class="testimonial-card-title">{{fb.F_name}}</h6>
                         </div>
+                        
                     </div>
                 </div>
             </div>
+            {% endfor %}
         </div> <!-- end of container -->
     </section> <!-- end of FEEDBACK section -->
     
@@ -238,24 +218,27 @@
             <h6 class="section-title mb-6">My Certificates</h6>
             <!-- blog-wrapper -->
             <div class="blog-card">
+                {% for cert in cert %}
                 <div class="blog-card-header">
                     <img src="static/imgs/img-1.jpg" class="blog-card-img" alt="Download free bootstrap 4 landing page, free boootstrap 4 templates, Download free bootstrap 4.1 landing page, free boootstrap 4.1.1 templates, meyawo Landing page">
                 </div>
                 <div class="blog-card-body">
-                    <h5 class="blog-card-title">{{cert.cname}}</h6>
+                    <h5 class="blog-card-title">{{cert.C_name}}</h6>
 
                     <!-- <p class="blog-card-caption">
                         <a href="#">By: Admin</a>
                         <a href="#"><i class="ti-heart text-danger"></i> 234</a>
                         <a href="#"><i class="ti-comment"></i> 123</a>
                     </p> -->
-                    <p>{{cert.cdes}}</p>
+                    <p>{{cert.C_description}}</p>
 
                     <!-- <p><b>Necessitatibus nihil impedit! Ex nisi eveniet, dolor aliquid consequuntur repudiandae.</b></p>
                     <p>Magnam in repellat enim harum omnis aperiam! Explicabo illo, commodi, dolor blanditiis cupiditate harum nisi vero accusamus laudantium voluptatibus dolores quae obcaecati.</p> -->
 
                     <!-- <a href="#" class="blog-card-link">Read more <i class="ti-angle-double-right"></i></a> -->
+                    
                 </div>
+                {% endfor %}
             </div><!-- end of blog wrapper -->
 
         </div><!-- end of container -->
@@ -267,20 +250,33 @@
             <p class="section-subtitle">How can you communicate?</p>
             <h6 class="section-title mb-5">Contact Me</h6>
             <!-- contact form -->
-            <form action="" class="contact-form col-md-10 col-lg-8 m-auto">
+            {% if messages %}
+                    {% for message in messages %}
+                    <div class="alert alert-success alert-dismissible">
+                    <strong>Success!</strong>{{message}}
+                    <button type="button" class="close" data-bs-dismiss="alert">&times;</button>
+                    </div>
+                    {% endfor %}
+                    {% endif %} 
+            <form  methot="POST" action="/fb#contact" class="contact-form col-md-10 col-lg-8 m-auto">
+                {% csrf_token %}
                 <div class="form-row">
                     <div class="form-group col-sm-6">
-                        <input type="text" size="50" class="form-control" placeholder="Your Name" required>                 
+                        <input type="text" size="50" class="form-control" placeholder="Your Name" name="name" required>                 
                     </div>
                     <div class="form-group col-sm-6">
-                        <input type="email" class="form-control" placeholder="Enter Email"requried>                 
+                        <input type="email" class="form-control" placeholder="Enter Email" name="email" requried>                 
+                    </div>
+                    <div class="form-group col-sm-6">
+                        <input type="number" size="50" class="form-control" placeholder="Enter mobile number" name="phone" required>                 
                     </div>
                     <div class="form-group col-sm-12">
-                        <textarea name="comment" id="comment" rows="6"   class="form-control" placeholder="Write Something"></textarea>
+                        <textarea name="feedback_text" id="comment" rows="6"   class="form-control" placeholder="Write Something"></textarea>
                     </div>
                     <div class="form-group col-sm-12 mt-3">
-                        <input type="submit" value="Send Message" class="btn btn-outline-primary rounded">                  
+                        <button type="submit"class="btn btn-outline-primary rounded">Send Messege</button>      
                     </div>
+                    
                 </div>  
             </form><!-- end of contact form -->
         </div><!-- end of container -->
