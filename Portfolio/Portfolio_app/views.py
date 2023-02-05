@@ -30,8 +30,7 @@ def fb(request):
         email= request.GET['email']
         phone = request.GET['phone']
         mess= request.GET['feedback_text']
-        k=Feedback(F_name=fname,F_Email=email,F_mobile=phone,F_text=mess).save()
-        print(k)
+        Feedback(F_name=fname,F_Email=email,F_mobile=phone,F_text=mess).save()
         messages.success(request,'FeedBack Submited Successfully')
         return render(request,'base.html')
     
